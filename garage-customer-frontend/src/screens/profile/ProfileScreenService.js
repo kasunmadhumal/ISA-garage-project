@@ -27,7 +27,32 @@ export const uploadToFirebase = async (file, setImageUploadProcess, email) => {
 }
 
 
-export const userProfileDetails = async (email, setFirstName, setLastName, setAddress, setAge, setGender, setPhoneNumber, setImageUrl) => {
+export const updateUserDetails = async (valueObejct) => {
+
+  console.log('Value Object:', valueObejct);
+
+  try{
+    api.put(`/api/v1/customer-account/`,
+       valueObejct
+    )
+    .then(function (response) {
+
+      console.log(response);
+    })
+    .catch(function (error) {
+
+      console.log(error);
+    });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    throw error;
+  }
+
+}
+
+
+
+export const userProfileDetails = async (email, setFirstName, setLastName, setAddress, setAge, setGender, setPhoneNumber, setImageUrl, setOwnerVehicles, setUserAlreadyExists) => {
 
 
 
@@ -46,6 +71,8 @@ export const userProfileDetails = async (email, setFirstName, setLastName, setAd
         setGender(data.gender);
         setPhoneNumber(data.phoneNumber);
         setImageUrl(data.profilePicture);
+        setOwnerVehicles(data.ownerVehicles);
+        setUserAlreadyExists(true);
         
     } else {
       console.log("error occred")

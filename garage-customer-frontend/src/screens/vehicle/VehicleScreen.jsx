@@ -7,6 +7,7 @@ import {
   ownerVehiclesList,
   submitCustomerVehicleDetails,
   onDeleteVehicleFromAccount,
+  updateVehicleDetails
 } from './VehicleScreenService';
 import { PlusOutlined } from '@ant-design/icons';
 import secureLocalStorage from 'react-secure-storage';
@@ -22,6 +23,16 @@ const VehicleScreen = () => {
   const [vehicleDetailsLoadingWaiting, setVehicleDetailsLoadingWaiting] =
     useState(false);
   const [ownerEmail] = useState(secureLocalStorage.getItem('user'));
+  const [model, setModel] = useState('');
+  const [vehicleNumber, setVehicleNumber] = useState('');
+  const [year, setYear] = useState('');
+  const [fuelType, setFuelType] = useState('');
+  const [vehicleType, setVehicleType] = useState('');
+  const [numberOfSeats, setNumberOfSeats] = useState('');
+  const [numberOfDoors, setNumberOfDoors] = useState('');
+  const [distanceLimit, setDistanceLimit] = useState('');
+  const [vehicleImage, setVehicleImage] = useState('');
+  const [updateVehicle, setUpdateVehicle] = useState(false);  
 
   useEffect(() => {
     try {
@@ -43,8 +54,22 @@ const VehicleScreen = () => {
     }
   };
 
+  const setVehicleDetailsValues = (vehicle) => {
+    setModel(vehicle.model);
+    setVehicleNumber(vehicle.vehicleNumber);
+    setYear(vehicle.year);
+    setFuelType(vehicle.fuelType);
+    setVehicleType(vehicle.vehicleType);
+    setNumberOfSeats(vehicle.numberOfSeats);
+    setNumberOfDoors(vehicle.numberOfDoors);
+    setDistanceLimit(vehicle.distanceLimit);
+    setVehicleImage(vehicle.vehicleImage);
+  };
+
   const onEditVehicle = (vehicle) => {
-    console.log('Edit vehicle:', vehicle);
+     setUpdateVehicle(true);
+     setVehicleDetailsValues(vehicle);
+     console.log('Edit vehicle:', vehicle);
   };
 
   const onDeleteVehicle = (vehicleNumber) => {
@@ -57,17 +82,49 @@ const VehicleScreen = () => {
     );
   };
 
+  const clearVariables = () => {
+    setModel('');
+    setVehicleNumber('');
+    setYear('');
+    setFuelType('');
+    setVehicleType('');
+    setNumberOfSeats('');
+    setNumberOfDoors('');
+    setDistanceLimit('');
+  };
+
+
   const handleSubmit = async (values) => {
     console.log('Received values of form:', values);
     try {
       setWaiting(true);
-      await submitCustomerVehicleDetails(
-        values,
-        ownerEmail,
-        imageUrl,
-        setVehicleList,
-        setVehicleDetailsLoadingWaiting,
-      );
+      if(updateVehicle){
+        await updateVehicleDetails(
+          {
+            "model": values.model !== undefined ? values.model : model,
+            "vehicleNumber": values.vehicleNumber !== undefined ? values.vehicleNumber : vehicleNumber,
+            "year": values.year !== undefined ? values.year : year,
+            "fuelType": values.fuelType !== undefined ? values.fuelType : fuelType,
+            "vehicleType": values.vehicleType !== undefined ? values.vehicleType : vehicleType,
+            "numberOfSeats": values.numberOfSeats !== undefined ? values.numberOfSeats : numberOfSeats,
+            "numberOfDoors": values.numberOfDoors !== undefined ? values.numberOfDoors : numberOfDoors,
+            "distanceLimit": values.distanceLimit !== undefined ? values.distanceLimit : distanceLimit,
+            "vehicleImage" : values.vehicleImage !== undefined ? values.vehicleImage : vehicleImage,
+            "ownerEmail": ownerEmail
+          }
+        );
+        setUpdateVehicle(false);
+        clearVariables();
+      }
+      else{
+        await submitCustomerVehicleDetails(
+          values,
+          ownerEmail,
+          imageUrl,
+          setVehicleList,
+          setVehicleDetailsLoadingWaiting,
+        );
+      }
       setWaiting(false);
     } catch (error) {
       setWaiting(false);
@@ -125,21 +182,21 @@ const VehicleScreen = () => {
               label="Vehicle Model"
               name="model"
               className="vehicle-details-input"
-              rules={[
+              rules={ !updateVehicle &&[
                 {
                   required: true,
                   message: 'Please input your vehicle model!',
                 },
               ]}
             >
-              <Input />
+              <Input placeholder={model}/>
             </Form.Item>
 
             <Form.Item
               label="Vehicle Number"
               name="vehicleNumber"
               className="vehicle-details-input"
-              rules={[
+              rules={ !updateVehicle &&[
                 {
                   required: true,
                   message: 'Please input your vehicle number!',
@@ -150,13 +207,13 @@ const VehicleScreen = () => {
                 },
               ]}
             >
-              <Input />
+              <Input placeholder={vehicleNumber} disabled={updateVehicle}/>
             </Form.Item>
             <Form.Item
               label="Manufactured Year"
               name="year"
               className="vehicle-details-input"
-              rules={[
+              rules={!updateVehicle && [
                 {
                   required: true,
                   message: 'Please input your vehicle manufactured year!',
@@ -178,21 +235,21 @@ const VehicleScreen = () => {
                 },
               ]}
             >
-              <Input type="number" />
+              <Input type="number" placeholder={year}/>
             </Form.Item>
 
             <Form.Item
               label="Fuel Type"
               name="fuelType"
               className="vehicle-details-input"
-              rules={[
+              rules={ !updateVehicle && [
                 {
                   required: true,
                   message: 'Please input your vehicle fuel type!',
                 },
               ]}
             >
-              <Input />
+              <Input placeholder={fuelType}/>
             </Form.Item>
             <Form.Item
               label="Vehicle Type"
@@ -220,7 +277,7 @@ const VehicleScreen = () => {
               label="Number of Seats"
               name="numberOfSeats"
               className="vehicle-details-input"
-              rules={[
+              rules={!updateVehicle &&[
                 {
                   validator: async (_, value) => {
                     if (value > 0 && value < 80) {
@@ -234,14 +291,14 @@ const VehicleScreen = () => {
                 },
               ]}
             >
-              <Input type="number" />
+              <Input type="number" placeholder={numberOfSeats}/>
             </Form.Item>
 
             <Form.Item
               label="Number of Doors"
               name="numberOfDoors"
               className="vehicle-details-input"
-              rules={[
+              rules={!updateVehicle &&[
                 {
                   validator: async (_, value) => {
                     if (value > 0 && value < 6) {
@@ -255,14 +312,14 @@ const VehicleScreen = () => {
                 },
               ]}
             >
-              <Input type="number" />
+              <Input type="number" placeholder={numberOfDoors}/>
             </Form.Item>
 
             <Form.Item
               label="Distance Limit"
               name="distanceLimit"
               className="vehicle-details-input"
-              rules={[
+              rules={!updateVehicle &&[
                 {
                   validator: async (_, value) => {
                     if (value > 0) {
@@ -276,7 +333,7 @@ const VehicleScreen = () => {
                 },
               ]}
             >
-              <Input type="double" />
+              <Input type="double" placeholder={distanceLimit}/>
             </Form.Item>
             <Form.Item
               label="Upload"
@@ -324,7 +381,9 @@ const VehicleScreen = () => {
               }}
             >
               <Button type="primary" htmlType="submit">
-                Submit
+                {
+                  updateVehicle ? 'Update' : 'Submit'
+                }
               </Button>
             </Form.Item>
           </Form>

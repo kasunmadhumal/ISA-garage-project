@@ -60,6 +60,28 @@ export const ownerVehiclesList = async (ownerEmail, setVehicleList, setVehicleDe
   }
 
 
+  export const updateVehicleDetails = async (vehicleObj) => {
+
+      try{
+        api.put(`/api/v1/customer-vehicle/`,
+          vehicleObj
+        )
+        .then(function (response) {
+
+          console.log(response);
+        })
+        .catch(function (error) {
+
+          console.log(error);
+        });
+      } catch (error) {
+        console.error('Error updating vehicle:', error);
+        throw error;
+      }
+
+
+}
+
 
   export const submitCustomerVehicleDetails = async (values, ownerEmail, imageUrl, setVehicleList, setVehicleDetailsLoadingWaiting) => {
 

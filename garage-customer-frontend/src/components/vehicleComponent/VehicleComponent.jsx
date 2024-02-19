@@ -3,6 +3,7 @@ import './VehicleComponent.css';
 import { Button } from 'antd';
 import { EditOutlined, DeleteOutlined, SelectOutlined } from '@ant-design/icons';
 
+
 const VehicleComponent = (props) => {
     return (
         <div className='vehicle-card-view'>

@@ -11,7 +11,7 @@ import {
   Spin,
   Upload,
 } from 'antd';
-import { uploadToFirebase, submitCustomerAccountDetails, userProfileDetails } from './ProfileScreenService';
+import { uploadToFirebase, submitCustomerAccountDetails, userProfileDetails, updateUserDetails } from './ProfileScreenService';
 import  secureLocalStorage  from  "react-secure-storage";
 
 
@@ -28,12 +28,14 @@ const ProfileScreen = ()  => {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [email] = useState(secureLocalStorage.getItem("user")); 
+  const [ownerVehicles, setOwnerVehicles] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [userAlreadyExists, setUserAlreadyExists] = useState(false);
 
 
   useEffect(() => {
       try {
-        userProfileDetails(email, setFirstName, setLastName, setAddress, setAge, setGender, setPhoneNumber, setImageUrl);
+        userProfileDetails(email, setFirstName, setLastName, setAddress, setAge, setGender, setPhoneNumber, setImageUrl, setOwnerVehicles, setUserAlreadyExists);
       } catch (e) {
         console.log(e.error);
       }
@@ -57,18 +59,64 @@ const ProfileScreen = ()  => {
        setGender(values.gender);
        setPhoneNumber(values.phoneNumber)
   }
+  const setUpdatedVariables = async (values) => {
+    if (values.firstname !== undefined) {
+      console.log("firstname", values.firstname);
+      setFirstName(values.firstname);
+    }
+    if (values.lastname !== undefined) {
+      console.log("lastname", values.lastname);
+      setLastName(values.lastname);
+    }
+    if (values.address !== undefined) {
+      console.log("address", values.address);
+      setAddress(values.address);
+    }
+    if (values.age !== undefined) {
+      console.log("age", values.age);
+      setAge(values.age);
+    }
+    if (values.phoneNumber !== undefined) {
+      console.log("phoneNumber", values.phoneNumber);
+      setPhoneNumber(values.phoneNumber);
+    }
+    if (values.gender !== undefined) {
+      console.log(values.gender)
+      setGender(values.gender)
+    }
 
+    return true;
+  }
   const handleSubmit = async (values) => {
     try {
       setWaiting(true);
-      await submitCustomerAccountDetails(values, email, imageUrl);
+      if (userAlreadyExists) {
+          await updateUserDetails({
+          "firstName" : values.firstname !== undefined ? values.firstname : firstname,
+          "lastName" : values.lastName !== undefined ? values.lastname : lastname,
+          "email" : values.email !== undefined ? values.email : email,  
+          "address" : values.address !== undefined ? values.address : address,
+          "phoneNumber" : values.phoneNumber !== undefined ? values.phoneNumber : phoneNumber,
+          "age" : values.age !== undefined ? values.age : age,
+          "gender": values.gender !== undefined ? values.gender: gender,
+          "profilePicture" : values.image !== undefined ? values.image : imageUrl,
+          "ownerVehicles" : ownerVehicles
+        });
+        setUpdatedVariables(values);
+      
+      } else
+      {
+        await submitCustomerAccountDetails(values, email, imageUrl);
+        setVariables(values);
+      }
       setWaiting(false);
-      setVariables(values)
     } catch (error) {
       setWaiting(false);
       console.error('There was an error!', error);
     }
   }
+
+
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -122,7 +170,7 @@ const ProfileScreen = ()  => {
               label="FirstName"
               name="firstname"
               className='account-details-input'
-              rules={[
+              rules={!userAlreadyExists && [
                 {
                   required: true,
                   message: 'Please input your first name!',
@@ -144,7 +192,7 @@ const ProfileScreen = ()  => {
               label="LastName"
               name="lastname"
               className='account-details-input'
-              rules={[
+              rules={!userAlreadyExists &&[
                 {
                   required: true,
                   message: 'Please input your last name!',
@@ -165,7 +213,7 @@ const ProfileScreen = ()  => {
               label="Age"
               name="age"
               className='account-details-input'
-              rules={[
+              rules={!userAlreadyExists &&[
                 {
                   validator: async (_, value) => {
                     if (value > 0 && value < 120) {
@@ -219,7 +267,7 @@ const ProfileScreen = ()  => {
               label="Phone Number"
               name="phoneNumber"
               className='account-details-input'
-              rules={[
+              rules={!userAlreadyExists &&[
                 {
                   required: true,
                   message: 'Please input your phone number!',
@@ -289,9 +337,13 @@ const ProfileScreen = ()  => {
                 justifyContent: 'center',
               }}
             >
+          
               <Button type="primary" htmlType="submit">
-                Submit
+                  {
+                    userAlreadyExists ? 'Update' : 'Submit'
+                  }
               </Button>
+
             </Form.Item>
 
           </Form>
