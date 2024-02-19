@@ -1,0 +1,105 @@
+.profile-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: '100%';
+    height: 100vh;
+}
+
+.profile-content-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 90vh;
+}
+
+.profile-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 90vh;
+}
+
+
+
+.profile-view-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 90vh;
+    background-color: rgb(236, 234, 234);
+    text-align: center;
+}
+
+.profile-form-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: darkslategray;
+    font-family:'Courier New';
+}
+
+.profile-view-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: darkslategray;
+    font-family:'Courier New';       
+}
+
+.account-details-input{
+    margin-bottom: 40px;
+}
+
+.profile-photo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.profile-image{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-view-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.profile-view-content-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-view-content-item-label{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: darkslategray;
+    font-family:'Courier New';
+}
+
+.profile-view-content-item-value{
+    font-size: 20px;
+    color: black;
+    font-family:'Lucida Sans',
+}

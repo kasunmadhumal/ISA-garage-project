@@ -1,0 +1,89 @@
+.time-slot-screen-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: '100%';
+    height: 100vh;
+}
+
+
+.nav-bar-container{
+    height: 10%;
+}
+
+.time-slot-booking-screen-main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 85vh;
+
+}
+
+.time-slot-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 86vh;
+    overflow-y: auto;
+    
+}
+
+.time-slot-booking-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 85vh;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.footer-container{
+      height: 5vh;
+}
+
+.time-slot-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: darkslategray;
+    font-family:'Courier New';
+}
+
+.time-slot-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.available-timeslots{
+   display: flex ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.booked-timeslots{
+
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.accepted-timeslots{
+
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}

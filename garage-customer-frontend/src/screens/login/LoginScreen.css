@@ -1,0 +1,42 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: #ffffff;
+  }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 50px;
+    border: 1px solid #ccc; 
+    border-radius: 20px; 
+    background-color: #f9f9f9;
+  } 
+
+.page-title {
+    margin-bottom: 20px;
+    color: #6495ed;
+    width: "100%";
+    text-align: center;
+    justify-content: "center";
+    align-items: "center";
+    font-family:'Courier New';
+  }
+
+.title-text {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: "10px";
+  }
+
+.title-image{
+    width: 60px;
+    height: 60px;
+  }

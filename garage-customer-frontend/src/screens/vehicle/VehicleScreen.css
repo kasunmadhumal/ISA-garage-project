@@ -1,0 +1,76 @@
+.vehicle-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: '100%';
+    height: 100vh;
+}
+
+.navbar-container{
+    height: 10vh;
+}
+
+.vehicle-content-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 90vh;
+}
+
+.vehicle-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 90vh;
+    overflow-y: auto;
+}
+
+
+
+.vehicle-view-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 90vh;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.vehicle-form-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: darkslategray;
+    font-family:'Courier New';
+}
+
+.vehicle-view-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: darkslategray;
+    font-family:'Courier New';       
+}
+
+.vehicle-details-input{
+    margin-bottom: 40px;
+}
+
+.vehicle-view-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #f9f9f9;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+}
+
+
+/* view of the car */
+

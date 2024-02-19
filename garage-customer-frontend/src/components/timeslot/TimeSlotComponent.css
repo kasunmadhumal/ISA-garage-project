@@ -1,0 +1,104 @@
+.timeslot-component-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #f9f9f9;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    width: 400px;
+    height: 300px;
+    cursor: pointer;
+
+}
+
+.timeslot-component-timeline{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timeslot-component-date-time{
+    display: flex;
+    flex-direction: row;
+}
+
+.timeslot-component-date-time-text{
+    font-style: italic;
+    font-size: 15px;
+    color: darkslategray;
+    font-family:'Courier New';
+    margin-left: 5px;
+
+}
+
+.timeslot-component-availability{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+}
+
+.timeslot-component-availability-text{
+    font-style: italic;
+    font-size: 15px;
+    color: darkslategray;
+    font-family:'Courier New';
+    margin-left: 10px;
+}
+
+.timeslot-component-availability-image-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+
+}
+
+.timeslot-component-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+
+.timeslot-component-content-text{
+    font-size: 15px;
+    font-weight: bold;
+    color: darkslategray;
+    font-family:'Courier New';
+    margin-left: 5px;
+}
+
+.timeslot-component-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.timeslot-component-button{
+    width: 80%;
+    height: 30px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: rgb(54, 59, 59);
+    font-family:'Courier New';
+    font-size: 15px;
+    cursor: pointer;
+
+}

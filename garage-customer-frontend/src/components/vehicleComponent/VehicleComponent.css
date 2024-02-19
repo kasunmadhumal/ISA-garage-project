@@ -1,0 +1,83 @@
+.vehicle-card-view{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid #f9f9f9;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vehicle-image{
+    height: 70%;
+    width: 80%;
+    border-radius: 5%;
+    margin-bottom: 20px;
+}
+
+.vehicle-image-view{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vehicle-details-view{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-option-bar{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vehicle-model-text{
+    font-size: 18px;
+    font-weight: bold;
+    color: darkslategray;
+    font-family:'Courier New';
+}
+
+
+
+.card-vehicle-details-item{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.vehicle-details-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: 40px;
+}
+
+.vehicle-details-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
