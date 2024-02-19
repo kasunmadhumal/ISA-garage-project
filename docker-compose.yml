@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  customer-service:
+    build: ./customer-service
+    ports:
+      - "8085:8085"
+    networks:
+      - my_network
+    depends_on:
+      - garage
+  garage:
+    build: ./garage
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+
+  garage-customer-frontend:
+    build: ./garage-customer-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - customer-service
+      - garage
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
